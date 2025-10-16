@@ -35,6 +35,13 @@ limit_right = 768
 limit_bottom = 389
 limit_smoothed = true
 
+[node name="background" type="ColorRect" parent="."]
+offset_left = -748.0
+offset_top = -375.0
+offset_right = 754.0
+offset_bottom = 377.0
+color = Color(0.2231029, 0.2231029, 0.22310287, 1)
+
 [node name="walls" type="StaticBody2D" parent="."]
 position = Vector2(-1, 21)
 

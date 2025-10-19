@@ -1,7 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4mvq8ev46tls"]
+[gd_scene load_steps=12 format=3 uid="uid://c4mvq8ev46tls"]
 
-[ext_resource type="Texture2D" uid="uid://dfsioa8e866cn" path="res://player.png" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://bg3lki8u6fbcv" path="res://player.gd" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://cpsvsupvd2idq" path="res://PlayerImages/Poses/player_idle.png" id="2_7mycd"]
+[ext_resource type="Texture2D" uid="uid://b7drlpfspm1nh" path="res://PlayerImages/Poses/player_stand.png" id="3_272bh"]
+[ext_resource type="Texture2D" uid="uid://cbykrxu5fi02y" path="res://PlayerImages/Poses/player_jump.png" id="4_5vw27"]
+[ext_resource type="Texture2D" uid="uid://bamejrkd3y7gm" path="res://PlayerImages/Poses/player_walk1.png" id="5_kek77"]
+[ext_resource type="Texture2D" uid="uid://bjwrrnsri66vj" path="res://PlayerImages/Poses/player_walk2.png" id="6_4c57u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
 size = Vector2(1545.875, 5)
@@ -10,18 +14,56 @@ size = Vector2(1545.875, 5)
 size = Vector2(1545.875, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
-size = Vector2(206.9375, 5)
+size = Vector2(204.46875, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
-size = Vector2(32, 30)
+size = Vector2(101.25, 99)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_efxa6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7mycd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_272bh")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_5vw27")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_kek77")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4c57u")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
+}]
 
 [node name="Main" type="Node2D"]
 
 [node name="background" type="ColorRect" parent="."]
-offset_left = -776.0
-offset_top = -375.0
-offset_right = 726.0
-offset_bottom = 377.0
+offset_left = -777.0
+offset_top = -325.0
+offset_right = 725.0
+offset_bottom = 427.0
 color = Color(0.2231029, 0.2231029, 0.22310287, 1)
 
 [node name="floor" type="StaticBody2D" parent="."]
@@ -31,22 +73,23 @@ position = Vector2(-1, 21)
 position = Vector2(2, 359)
 shape = SubResource("RectangleShape2D_lquwl")
 
-[node name="bottom4" type="CollisionShape2D" parent="floor"]
+[node name="right" type="CollisionShape2D" parent="floor"]
 position = Vector2(726, -20)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_1bvp3")
 
-[node name="bottom5" type="CollisionShape2D" parent="floor"]
+[node name="left" type="CollisionShape2D" parent="floor"]
 position = Vector2(-771, -22)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_1bvp3")
 
 [node name="bottom2" type="CollisionShape2D" parent="floor"]
-position = Vector2(-472, 306)
+position = Vector2(-424.00003, 299.00003)
+rotation = -0.5235988
 shape = SubResource("RectangleShape2D_h2yge")
 
 [node name="bottom3" type="CollisionShape2D" parent="floor"]
-position = Vector2(-251, 228)
+position = Vector2(-298, 284)
 shape = SubResource("RectangleShape2D_h2yge")
 
 [node name="Player" type="CharacterBody2D" parent="."]
@@ -54,15 +97,15 @@ use_parent_material = true
 script = ExtResource("2_0xm2m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 6.5)
 shape = SubResource("RectangleShape2D_0xm2m")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-texture = ExtResource("1_ig7tw")
-
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(2, 0)
 limit_left = -761
 limit_top = -400
 limit_right = 768
 limit_bottom = 389
 limit_smoothed = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_efxa6")

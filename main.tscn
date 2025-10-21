@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4mvq8ev46tls"]
+[gd_scene load_steps=13 format=3 uid="uid://c4mvq8ev46tls"]
 
 [ext_resource type="Script" uid="uid://bg3lki8u6fbcv" path="res://player.gd" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://cpsvsupvd2idq" path="res://PlayerImages/Poses/player_idle.png" id="2_7mycd"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cbykrxu5fi02y" path="res://PlayerImages/Poses/player_jump.png" id="4_5vw27"]
 [ext_resource type="Texture2D" uid="uid://bamejrkd3y7gm" path="res://PlayerImages/Poses/player_walk1.png" id="5_kek77"]
 [ext_resource type="Texture2D" uid="uid://bjwrrnsri66vj" path="res://PlayerImages/Poses/player_walk2.png" id="6_4c57u"]
+[ext_resource type="PackedScene" uid="uid://c3bogkcyeyeod" path="res://enemy.tscn" id="7_272bh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
 size = Vector2(1545.875, 5)
@@ -17,7 +18,7 @@ size = Vector2(1545.875, 5)
 size = Vector2(204.46875, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
-size = Vector2(101.25, 99)
+size = Vector2(62, 99)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_efxa6"]
 animations = [{
@@ -92,16 +93,16 @@ shape = SubResource("RectangleShape2D_h2yge")
 position = Vector2(-298, 284)
 shape = SubResource("RectangleShape2D_h2yge")
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
 use_parent_material = true
 script = ExtResource("2_0xm2m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(0, 6.5)
+position = Vector2(1, 6.5)
 shape = SubResource("RectangleShape2D_0xm2m")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-limit_left = -761
+limit_left = -770
 limit_top = -400
 limit_right = 768
 limit_bottom = 389
@@ -109,3 +110,6 @@ limit_smoothed = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 sprite_frames = SubResource("SpriteFrames_efxa6")
+
+[node name="Enemy" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(391, 320)
